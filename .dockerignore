@@ -1,0 +1,9 @@
+.git
+.github
+.agents
+REF
+vendor
+build
+.phpunit.cache
+*.md
+dist

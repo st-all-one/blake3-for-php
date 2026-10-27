@@ -1,0 +1,82 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "st-all-one/blake3",
+    "description": "Pure PHP BLAKE3 implementation for PHP 8.4+ with hash, keyed hash, key derivation, XOF and streaming.",
+    "type": "library",
+    "license": "Apache-2.0",
+    "keywords": [
+        "blake3",
+        "cryptography",
+        "hash",
+        "hashlib",
+        "xof"
+    ],
+    "homepage": "https://github.com/st-all-one/blake3-for-php",
+    "support": {
+        "issues": "https://github.com/st-all-one/blake3-for-php/issues",
+        "source": "https://github.com/st-all-one/blake3-for-php"
+    },
+    "authors": [
+        {
+            "name": "St-all-one"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "php-64bit": "*"
+    },
+    "require-dev": {
+        "carthage-software/mago": "1.59.0",
+        "phpstan/phpstan": "2.3.2",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "13.4.5",
+        "shipmonk/dead-code-detector": "^1.4"
+    },
+    "suggest": {
+        "ext-blake3": "Native BLAKE3 extension for higher throughput; this library does not require it."
+    },
+    "autoload": {
+        "psr-4": {
+            "StAllOne\\Blake3\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "StAllOne\\Blake3\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "composer validate --strict --no-check-publish",
+            "@lint",
+            "@static",
+            "@test"
+        ],
+        "coverage": [
+            "@php vendor/bin/phpunit --coverage-clover=build/coverage.xml",
+            "@php tools/coverage-check.php build/coverage.xml 100"
+        ],
+        "lint": [
+            "vendor/bin/mago lint",
+            "vendor/bin/mago format --check"
+        ],
+        "static": "vendor/bin/phpstan analyse --no-progress --memory-limit=1G",
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "allow-plugins": false,
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.4.27"
+        },
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,0 +1,21 @@
+* text=auto eol=lf
+
+*.php text
+*.json text
+*.md text
+*.neon text
+*.xml text
+*.yml text
+*.yaml text
+Makefile text
+Dockerfile text
+*.Dockerfile text
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.zip binary
+
+/.agents export-ignore
+/REF export-ignore

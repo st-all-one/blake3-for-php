@@ -1,0 +1,32 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+
+permissions:
+    contents: read
+
+jobs:
+    quality:
+        name: Quality (glibc + musl)
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+            - name: Build development images
+              run: make build
+
+            - name: Install dependencies
+              run: make install
+
+            - name: Quality gate
+              run: make check
+
+            - name: Dependency audit
+              run: make audit
+
+            - name: Consumer smoke test
+              run: make smoke
